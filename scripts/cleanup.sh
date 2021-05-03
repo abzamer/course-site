@@ -9,14 +9,25 @@ rm -rf _private
 rm -rf _themes
 rm -rf academics
 rm -rf actions
+rm -f  addarsulawwal.jpg 
+rm -f  ALesson2.jpg
+rm -f  ALesson3.jpg
+rm -f  ALesson4.jpg
+rm -f  ALesson5.jpg
 rm -rf alphabets
 rm -rf Ammiyawavs
 rm -rf arabworld
+rm -f  backgroundlev.jpg
+rm -f  bg.jpg 
+rm -f  bullet.jpg 
+rm -f  buttonhome.jpg
 rm -rf calendar
 rm -rf cgi-bin
+rm -f  copyright.jpg
 rm -rf 'countries with diacritics'
 rm -rf description
 rm -rf direction
+rm -f  emb.jpg
 rm -rf food
 rm -rf images
 rm -rf lunar
