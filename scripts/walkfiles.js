@@ -34,11 +34,18 @@ const options = {
  
   walker.on("file", function (root, fileStats, next) {
     fs.readFile(fileStats.name, function () {
-        // console.log(`Encountered file ${fileStats.name}, root:'${JSON.stringify(root)}'`);
+        console.log(`Encountered file ${fileStats.name}, root:'${JSON.stringify(root)}'`);
         if(fileStats.name.toLocaleLowerCase().endsWith("jpg")) {
             // if the file ends with 'jpq', 'aif', 'wav', etc
             fileList.push(`${root}\\${fileStats.name}`);
             ++fileCount;
+
+            // output the html for this file within the page html we want
+            // <a href="assets/images/sigmund-IKXHeZw2XoY-unsplash.jpg" id="section">Class 2</a>
+            const localPath = root.replace(rootDir,'.').replace('\\','/');
+            const fileHrefToAdd = `<a href="${localPath}/${fileStats.name}" id="section">${fileStats.name}</a>`;
+            let htmlFilePath = root.replace(rootDir,'.').concat(`/myhrefs.html`);
+            fs.appendFileSync(htmlFilePath, fileHrefToAdd + "\n");
         }
       // doStuff
       next();
@@ -48,6 +55,14 @@ const options = {
   walker.on("directory", function (root, fileStats, next) {
     fs.readFile(fileStats.name, function () {
         console.log(`Encountered dir ${fileStats.name}, root:'${JSON.stringify(root)}'`);
+        const localPath = root.replace(rootDir,'.');
+        const dirPathToCreate = `${localPath}\\${fileStats.name}`;
+        fs.mkdir(dirPathToCreate, (error) => {
+          if(error) {
+            console.log(`Got an error:${error}`);
+          }
+        } );
+        console.log(`Created dir ${dirPathToCreate}`);
       next();
     });
   });
