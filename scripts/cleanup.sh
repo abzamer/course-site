@@ -42,6 +42,7 @@ rm -rf rima_wa_ddibaab
 rm -rf rukuud
 rm -rf seasons
 rm -rf solar
+rm -f  style.css
 rm -rf temp
 rm -rf transportation
 rm -rf weather
