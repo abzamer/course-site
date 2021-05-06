@@ -27,8 +27,8 @@ const prependingHtml = `<!DOCTYPE html>
     
 <body>
     <header id="masthead">
-        <div class="container">
-            <a href="index.html" id="logo">Arabic</a> 
+        <div class="container" id="logo">
+            Arabic 
         </div>
     </header>
     
