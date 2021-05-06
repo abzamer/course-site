@@ -55,18 +55,27 @@ walker.on("directory", function (root, fileStats, next) {
         console.log(`Got an error:${error}`);
       }
     });
-    // console.log(`Created dir ${dirPathToCreate}`);
-    ++dirCount;
 
-    // make sure we add a link in the current dir for this new directory we just added in the current dir's myhrefs.html
-    // const htmlFile = 'myhrefs.html';
-    // const localPath = root.replace(rootDir, '.').replace('\\', '/');
-    // const fileHrefToAdd = `<a href="${localPath}/${fileStats.name}/${htmlFile}" id="section">${fileStats.name}</a>${lineBreaksHtml}`;
-    const fileHrefToAdd = `<a href="./${fileStats.name}/${htmlFile}" id="section">${fileStats.name}</a>${lineBreaksHtml}`;
-    let htmlFilePath = root.replace(rootDir, '.').concat(`/${htmlFile}`);
-    fs.appendFileSync(htmlFilePath, fileHrefToAdd + "\n");
+    // check to make sure this dir is one we want to create first
+    // if (dirsWeDontWantList.includes(fileStats.name)) {
+    //   console.log(`Found a dir we do not want: ${fileStats.name}, skipping`);
+    //   next();
+    // } else {
+      // console.log(`Created dir ${dirPathToCreate}`);
+      ++dirCount;
 
-    next();
+      // make sure we add a link in the current dir for this new directory we just added in the current dir's myhrefs.html
+      // const htmlFile = 'myhrefs.html';
+      // const localPath = root.replace(rootDir, '.').replace('\\', '/');
+      // const fileHrefToAdd = `<a href="${localPath}/${fileStats.name}/${htmlFile}" id="section">${fileStats.name}</a>${lineBreaksHtml}`;
+      // include a nice folder icon (needs to be smaller) next to the existing href
+      // <div><a href="./_borders/myhrefs.html"><img src="../assets/images/foldericon.png" alt="folder icon"></a> <a href="./_borders/myhrefs.html" id="section">_borders</a></div><br/><br/>
+      const fileHrefToAdd = `<a href="./${fileStats.name}/${htmlFile}" id="section">${fileStats.name}</a>${lineBreaksHtml}`;
+      let htmlFilePath = root.replace(rootDir, '.').concat(`/${htmlFile}`);
+      fs.appendFileSync(htmlFilePath, fileHrefToAdd + "\n");
+
+      next();
+    
   });
 });
 

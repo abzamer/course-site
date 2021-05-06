@@ -11,6 +11,7 @@ const options = {
 const rootDir = '.'; //`C:\\Users\\angel\\Documents\\CD Content Arabic`;
 const htmlFile = 'myhrefs.html';
 const styleCSSFilePath = `C:\\Users\\angel\\Desktop\\Coding\\course-site\\assets\\css\\style.css`;
+const dirsWeDontWantList = ['_borders', '_derived', '_fpclass', '_overlay', '_private', '_themes'];
 
 // for the second pass which will prepend and append the following to make a nice looking file
 const prependingHtml = `<!DOCTYPE html>
@@ -79,6 +80,17 @@ walker.on("file", function (root, fileStats, next) {
     next();
   });
 });
+
+// walker.on("directory", function (root, fileStats, next) {
+//   fs.readFile(fileStats.name, function () {
+//     if(dirsWeDontWantList.includes(fileStats.name)) {
+//       console.log(`Encountered dir we do not want: ${fileStats.name}`);
+//       fs.rmdirSync(`./${fileStats.name}`, { recursive: true });
+//     }
+//     next();
+//   });
+// });
+
 
 walker.on("end", function (root, fileStats, next) {
   console.log(`Reached the end, myhrefhtml count: ${fileCount}`);
